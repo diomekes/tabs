@@ -1,0 +1,155 @@
+/*  IMPORT FONTS  ============================================================================= */
+
+@font-face {
+font-family: dina;
+src: url('fonts/dina.eot');
+src: url('fonts/dina.eot?#iefix') format('embedded-opentype'),
+url('fonts/dina.woff') format('woff'),
+url('fonts/dina.ttf') format('truetype'),
+url('fonts/dina.svg#dina') format('svg');
+}
+
+/* BASIC PAGE SETUP ============================================================================= */
+
+html,
+body {
+height:100%;
+margin:0;
+padding:0;
+font-family : dina, monospace; 	
+color : #969696;
+text-transform:lowercase;
+background: #171717;
+text-align:center;
+font-size:0.9em;
+}
+
+header {
+text-align: left;
+}
+
+footer {
+position:absolute;
+height:2em;
+width:100%;
+bottom:0;
+text-align:left;
+-webkit-transform:rotateY(180deg);
+transform:rotateY(180deg);
+}
+
+/*  HEADINGS  ============================================================================= */
+
+h1, h2, h3, h4, h5, h6 {
+font-weight : normal;
+margin-top: 10px;
+letter-spacing: -1px;
+}
+
+h1 { 
+margin-bottom : 0.2em;
+font-size : 6em; /* 96 / 16 */
+line-height : 1.4;
+}
+
+
+h2 { 
+color : #336a33;
+font-size : 1.8em; /* 40 / 16 */
+line-height : 1.1;
+}
+
+h3 { 
+margin-bottom : 0.3em;
+letter-spacing: -1px;
+font-size : 2em; /* 28 / 16 */
+line-height : 1.1; 
+}
+
+h4 { 
+margin-bottom : 0.5em;
+font-size : 1.5em; /* 24 / 16  */
+line-height : 1.25; }
+
+h5 { 
+margin-bottom : 1.25em;
+font-size : 1em; /* 20 / 16 */ }
+
+h6 { 
+font-size : 1em; /* 16 / 16  */ }
+
+/*  TYPOGRAPHY  ============================================================================= */
+
+ul { 
+margin : 0; 
+padding : 0; 
+font-size : 1.4em;
+list-style-type: none;
+}
+
+li.crumb {
+display:inline-block;
+}
+
+li.title {
+color:#336a33;
+}
+
+/* LINKS =============================================================================  */
+
+a { 
+color : #fff;
+transition: all 0.3s ease;
+text-decoration: none;
+}
+
+a:visited { 
+color : grey; }
+
+a:hover, 
+a:active { 
+outline : 0;
+color : #80a480;
+}
+
+/* IMAGES ============================================================================= */
+
+img {
+border : 0;
+max-width: 100%;
+height: auto;
+margin-bottom: 2%;
+}
+
+/*  MAIN LAYOUT	============================================================================= */
+
+.list {
+display:inline-block;
+vertical-align:top;
+width:300px;
+margin: 2%;
+overflow:hidden;
+border-top:1px solid;
+}
+
+.tab {
+display:inline-block;
+vertical-align:top;
+margin: 1%;
+white-space:pre;
+font-family:courier,monospace;
+}
+
+#page {
+min-height:100%;
+position:relative;
+}
+
+#content {
+padding-bottom:2em;
+}
+
+#lyrics,
+#info {
+white-space:pre-wrap;
+}

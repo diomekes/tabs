@@ -1,0 +1,34 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg>
+<metadata>
+Created by FontForge 20090914 at Thu Jul 24 05:19:21 2014
+ By www-data
+</metadata>
+<defs>
+<font id="Dina" horiz-adv-x="615" >
+  <font-face 
+    font-family="Dina"
+    font-weight="400"
+    font-stretch="normal"
+    units-per-em="1000"
+    panose-1="2 0 5 9 0 0 0 0 0 0"
+    ascent="800"
+    descent="-200"
+    bbox="0 0 0 0"
+    underline-thickness="50"
+    underline-position="-100"
+    unicode-range="U+000D-U+000D"
+  />
+<missing-glyph 
+ />
+    <glyph glyph-name=".notdef" 
+ />
+    <glyph glyph-name="uni0000" 
+ />
+    <glyph glyph-name="uni0000" 
+ />
+    <glyph glyph-name="uni000D" unicode="&#xd;" 
+ />
+  </font>
+</defs></svg>
