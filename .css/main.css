@@ -1,12 +1,16 @@
 /*  IMPORT FONTS  ============================================================================= */
 
 @font-face {
-font-family: dina;
-src: url('fonts/dina.eot');
-src: url('fonts/dina.eot?#iefix') format('embedded-opentype'),
-url('fonts/dina.woff') format('woff'),
-url('fonts/dina.ttf') format('truetype'),
-url('fonts/dina.svg#dina') format('svg');
+    font-family: 'orbitron-light';
+    src: url('fonts/orbitron/orbitron-light.eot');
+    src: url('fonts/orbitron/orbitron-light.eot?#iefix') format('embedded-opentype'),
+         url('fonts/orbitron/orbitron-light.woff2') format('woff2'),
+         url('fonts/orbitron/orbitron-light.woff') format('woff'),
+         url('fonts/orbitron/orbitron-light.ttf') format('truetype'),
+         url('fonts/orbitron/orbitron-light.svg#orbitron-light') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
 
 /* BASIC PAGE SETUP ============================================================================= */
@@ -16,8 +20,8 @@ body {
 height:100%;
 margin:0;
 padding:0;
-font-family : dina, monospace; 	
-color : #969696;
+font-family: orbitron-light, monospace; 	
+color: #969696;
 text-transform:lowercase;
 background: #171717;
 text-align:center;
@@ -55,7 +59,7 @@ line-height : 1.4;
 
 h2 { 
 color : #336a33;
-font-size : 1.8em; /* 40 / 16 */
+font-size : 2.6em; /* 40 / 16 */
 line-height : 1.1;
 }
 
@@ -83,12 +87,14 @@ font-size : 1em; /* 16 / 16  */ }
 ul { 
 margin : 0; 
 padding : 0; 
-font-size : 1.4em;
+font-size : 1.6em;
+line-height : 1.2;
 list-style-type: none;
 }
 
 li.crumb {
 display:inline-block;
+font-size: 0.8em;
 }
 
 li.title {
