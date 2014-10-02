@@ -4,7 +4,6 @@
     font-family: 'orbitron-light';
     src: url('fonts/orbitron/orbitron-light.eot');
     src: url('fonts/orbitron/orbitron-light.eot?#iefix') format('embedded-opentype'),
-         url('fonts/orbitron/orbitron-light.woff2') format('woff2'),
          url('fonts/orbitron/orbitron-light.woff') format('woff'),
          url('fonts/orbitron/orbitron-light.ttf') format('truetype'),
          url('fonts/orbitron/orbitron-light.svg#orbitron-light') format('svg');
@@ -30,15 +29,18 @@ line-height:1.2;
 
 header {
 text-align: left;
+margin:5px 0 10px;
 }
 
 footer {
 position:absolute;
-height:2em;
+height:1.625em;
 width:100%;
 bottom:0;
 text-align:left;
 -webkit-transform:rotateY(180deg);
+-moz-transform:rotateY(180deg);
+-o-transform:rotateY(180deg);
 transform:rotateY(180deg);
 }
 
@@ -122,7 +124,6 @@ img {
 border : 0;
 max-width: 100%;
 height: auto;
-margin-bottom: 2%;
 }
 
 /*  MAIN LAYOUT	============================================================================= */
@@ -148,10 +149,11 @@ font-size:0.8em;
 #page {
 min-height:100%;
 position:relative;
+overflow:hidden;
 }
 
 #content {
-padding-bottom:2em;
+padding-bottom:1.625em;
 }
 
 #lyrics,
