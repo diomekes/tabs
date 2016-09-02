@@ -4,83 +4,86 @@ main () {
 cwd=$(pwd)
 depth=0
 echo "Indexing $(pwd)"
-header
-directories
-footer
-find . -mindepth 2 -type d -path '*/\.*' -prune -o -type d -print | sed -e 's/.//' -e 's/\///' | sort | while IFS= read -r cdir
+header > index.html
+{
+  directories
+  footer
+} >> index.html
+while IFS= read -r cdir
   do
-    cd "${cdir}"
-    title=$(awk -F / '{print $NF}' <<< ${cdir} | sed 's/-/ /g')
-    parent=$(awk -F / '{print $(NF-1)}' <<< ${cdir} | sed 's/-/ /g')
-    css=$(sed -e 's/\/[^\/]*/\/../g' -e 's/.\///' <<< ${cdir})
-    depth=$(awk -F / '{print NF}' <<< ${cdir})
-    dots=$(printf "%0.s../" $(seq $depth))
+    cd "${cdir}" || return
+    title=$(awk -F / '{print $NF}' <<< "${cdir//-/ }")
+    parent=$(awk -F / '{print $(NF-1)}' <<< "${cdir//-/ }")
+    depth=$(awk -F / '{print NF}' <<< "${cdir}")
+    dots=$(printf "%0.s../" $(seq "$depth"))
     files=$(find . -maxdepth 1 -type f ! -iname index.html)
     echo "Indexing $(pwd)"
-    header
-    tabs
-    directories
-    footer
-    cd "$cwd"
-done
+    header > index.html
+    {
+      tabs
+      directories
+      footer
+    } >> index.html
+    cd "$cwd" || return
+done < <(find . -mindepth 2 -type d -path '*/\.*' -prune -o -type d -print | sed -e 's/.//' -e 's/\///' | sort)
 }
 
 header () {
-    echo '<!DOCTYPE html>' > index.html
-    echo '<html lang="en">' >> index.html
-    echo '  <head>' >> index.html
+    echo '<!DOCTYPE html>'
+    echo '<html lang="en">'
+    echo '  <head>'
     if [[ $depth = 0 ]]
       then
-        echo "    <title>tabs</title>" >> index.html
+        echo "    <title>tabs</title>"
       else
-        echo "    <title>${title}</title>" >> index.html
+        echo "    <title>${title}</title>"
     fi
-    echo '    <meta charset="UTF-8" />' >> index.html
-    echo '    <meta name="viewport" content="width=device-width, initial-scale=1.0">' >> index.html
+    echo '    <meta charset="UTF-8" />'
+    echo '    <meta name="viewport" content="width=device-width, initial-scale=1.0">'
     if [[ $depth = 0 ]]
       then  
-        echo "    <link href=\".css/main.css\" rel=\"stylesheet\" type=\"text/css\" />" >> index.html
+        echo "    <link href=\".css/main.css\" rel=\"stylesheet\" type=\"text/css\" />"
       else
-        echo "    <link href=\"${dots}.css/main.css\" rel=\"stylesheet\" type=\"text/css\" />" >> index.html
+        echo "    <link href=\"${dots}.css/main.css\" rel=\"stylesheet\" type=\"text/css\" />"
     fi
-    echo '  </head>' >> index.html
-    echo '  <body>' >> index.html
-    echo '    <div id="page">' >> index.html
-    echo '    <header>' >> index.html
+    echo '  </head>'
+    echo '  <body>'
+    echo '    <div id="page">'
+    echo '    <header>'
     breadcrumbs
-    echo '    </header>' >> index.html
-    echo '    <div id="content">' >> index.html
+    echo '    </header>'
+    echo '    <div id="content">'
 }
 
 breadcrumbs () {
     if [[ $depth != 0 ]]
       then
-        echo '      <ul class="breadcrumb">' >> index.html
-        echo "        <li class=\"crumb\">// </li>" >> index.html
-        echo "        <li class=\"crumb\"><a href=\"../..\">tabs</a></li>" >> index.html
-        echo "        <li class=\"crumb\"> // </li>" >> index.html
-        echo "        <li class=\"crumb\">${parent}</li>" >> index.html
-        echo "        <li class=\"crumb\"> // </li>" >> index.html
-        echo "        <li class=\"crumb title\">${title}</li>" >> index.html
-        echo '      </ul>' >> index.html
+        echo '      <ul class="breadcrumb">'
+        echo "        <li class=\"crumb\">// </li>"
+        echo "        <li class=\"crumb\"><a href=\"../..\">tabs</a></li>"
+        echo "        <li class=\"crumb\"> // </li>"
+        echo "        <li class=\"crumb\">${parent}</li>"
+        echo "        <li class=\"crumb\"> // </li>"
+        echo "        <li class=\"crumb title\">${title}</li>"
+        echo '      </ul>'
     fi
 }
 
 directories () {
-    find . -maxdepth 1 -type d ! -iname ".*" | sed -e 's/.//' -e 's/\///' | sort | while IFS= read -r dir
+    while IFS= read -r dir
       do
-	artist=$(echo "${dir}" | sed 's/-/ /g')
-        echo '      <div class="list">' >> index.html
-        echo "        <a><h2>${artist}</h2></a>" >> index.html
-        echo '        <ul>' >> index.html
+	artist="${dir//-/ }"
+        echo '      <div class="list">'
+        echo "        <a><h2>${artist}</h2></a>"
+        echo '        <ul>'
         find "$dir" -mindepth 1 -maxdepth 1 -type d ! -iname ".*" | sort | while IFS= read -r subdir
           do
             song=$(basename "${subdir}" | sed 's/-/ /g')
-            echo "          <li><a href=\"${subdir}\">${song}</a></li>" >> index.html
+            echo "          <li><a href=\"${subdir}\">${song}</a></li>"
         done
-        echo '        </ul>' >> index.html
-        echo '      </div>' >> index.html
-    done
+        echo '        </ul>'
+        echo '      </div>'
+    done < <(find . -maxdepth 1 -type d ! -iname ".*" | sed -e 's/.//' -e 's/\///' | sort)
 }
 
 tabs () {
@@ -88,20 +91,20 @@ tabs () {
       then
         for tab in *.tab
           do
-            echo "        <!--#include file=\"${tab}\" -->" >> index.html
+            echo "        <!--#include file=\"${tab}\" -->"
         done
     fi
 }
 
 footer () {
-    depth=$(awk -F / '{print NF}' <<< ${cdir})
-    echo '      </div>' >> index.html
-    echo '    <footer>' >> index.html
+    depth=$(awk -F / '{print NF}' <<< "${cdir}")
+    echo '      </div>'
+    echo '    <footer>'
     breadcrumbs
-    echo '    </footer>' >> index.html
-    echo '    </div>' >> index.html
-    echo '  </body>' >> index.html
-    echo '</html>' >> index.html
+    echo '    </footer>'
+    echo '    </div>'
+    echo '  </body>'
+    echo '</html>'
 }
 
 main
