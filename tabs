@@ -91,7 +91,7 @@ tabs () {
       then
         for tab in *.tab
           do
-            echo "        <!--#include file=\"${tab}\" -->"
+            cat "${tab}"
         done
     fi
 }
