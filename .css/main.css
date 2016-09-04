@@ -14,8 +14,7 @@
 
 /* BASIC PAGE SETUP ============================================================================= */
 
-html,
-body {
+html {
 height:100%;
 margin:0;
 padding:0;
@@ -60,7 +59,7 @@ line-height : 1.4;
 
 h2 { 
 color : grey;
-font-size : 2.2em; /* 40 / 16 */
+font-size : 1.8em; /* 40 / 16 */
 line-height : 1.1;
 }
 
@@ -87,9 +86,12 @@ font-size : 1em; /* 16 / 16  */ }
 ul { 
 margin : 0; 
 padding : 0; 
-font-size : 1.4em;
+font-size : 1.2em;
 line-height : 1.2;
 list-style-type: none;
+}
+
+a {
 }
 
 li.crumb {
@@ -146,13 +148,14 @@ font-family:courier,monospace;
 font-size:0.8em;
 }
 
-#page {
+body {
 min-height:100%;
 position:relative;
-overflow:hidden;
+margin:0;
+padding:0;
 }
 
-#content {
+main {
 padding-bottom:1.625em;
 }
 

@@ -48,11 +48,10 @@ header () {
     fi
     echo '  </head>'
     echo '  <body>'
-    echo '    <div id="page">'
     echo '    <header>'
     breadcrumbs
     echo '    </header>'
-    echo '    <div id="content">'
+    echo '    <main>'
 }
 
 breadcrumbs () {
@@ -73,16 +72,14 @@ directories () {
     while IFS= read -r dir
       do
 	artist="${dir//-/ }"
-        echo '      <div class="list">'
-        echo "        <a><h2>${artist}</h2></a>"
-        echo '        <ul>'
+        echo '      <ul class="list">'
+        echo "        <li><h2>${artist}</h2></li>"
         find "$dir" -mindepth 1 -maxdepth 1 -type d ! -iname ".*" | sort | while IFS= read -r subdir
           do
             song=$(basename "${subdir}" | sed 's/-/ /g')
             echo "          <li><a href=\"${subdir}\">${song}</a></li>"
         done
-        echo '        </ul>'
-        echo '      </div>'
+        echo '      </ul>'
     done < <(find . -maxdepth 1 -type d ! -iname ".*" | sed -e 's/.//' -e 's/\///' | sort)
 }
 
@@ -98,11 +95,10 @@ tabs () {
 
 footer () {
     depth=$(awk -F / '{print NF}' <<< "${cdir}")
-    echo '      </div>'
+    echo '    </main>'
     echo '    <footer>'
     breadcrumbs
     echo '    </footer>'
-    echo '    </div>'
     echo '  </body>'
     echo '</html>'
 }
