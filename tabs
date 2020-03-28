@@ -77,7 +77,7 @@ directories () {
         find "$dir" -mindepth 1 -maxdepth 1 -type d ! -iname ".*" | sort | while IFS= read -r subdir
           do
             song=$(basename "${subdir}" | sed 's/-/ /g')
-            echo "          <li><a href=\"${subdir}\">${song}</a></li>"
+            echo "          <li><a href=\"${subdir}/\">${song}</a></li>"
         done
         echo '      </ul>'
     done < <(find . -maxdepth 1 -type d ! -iname ".*" | sed -e 's/.//' -e 's/\///' | sort)
